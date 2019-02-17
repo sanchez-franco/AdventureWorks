@@ -4,13 +4,11 @@ namespace AdventureWorks.Business.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        protected readonly DbContext _dbContext;
-
-        public DbContext DbContext => _dbContext;
+        protected readonly DbContext DbContext;
 
         public UnitOfWork(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            DbContext = dbContext;
         }
 
         public int SaveChanges()

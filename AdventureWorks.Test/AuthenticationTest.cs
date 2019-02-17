@@ -53,10 +53,12 @@ namespace AdventureWorks.Test
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void ValidLogIn()
         {
-            var validUser = _service.ValidateUserPassword("sanchez.franco@gmail.com", "password@123");
+            var userName = "sanchez.franco @gmail.com";
+            var validUser = _service.ValidateUserPassword(userName, "password@123");
             Assert.IsNotNull(validUser);
+            Assert.IsTrue(userName == validUser.UserName);
         }
     }
 }
