@@ -1,4 +1,4 @@
-# Basic Web API system using [AdventureWorks DB]
+# Basic MVC - Web API system using [AdventureWorks DB]
 
 
 Sample implementation of a Web API using day to day concepts.
