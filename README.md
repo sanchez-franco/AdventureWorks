@@ -1,7 +1,11 @@
 # Basic MVC - Web API system using [AdventureWorks DB]
 
 
-Sample implementation of a Web API using day to day concepts.
+Sample implementation of an MVC application calling Web API using day to day concepts.
+
+![LogIn](/Images/LogIn.PNG)
+
+![Person Details](/Images/ViewPerson.PNG)
 
 ## Implementation Details
 
