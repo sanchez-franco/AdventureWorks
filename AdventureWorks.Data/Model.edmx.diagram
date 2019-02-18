@@ -44,6 +44,9 @@
         <EntityTypeShape EntityType="AdventureWorks2014Model.BusinessEntityAddress" Width="1.5" PointX="13.25" PointY="5.75" />
         <AssociationConnector Association="AdventureWorks2014Model.FK_BusinessEntityAddress_Address_AddressID" />
         <AssociationConnector Association="AdventureWorks2014Model.FK_BusinessEntityAddress_AddressType_AddressTypeID" />
+        <EntityTypeShape EntityType="AdventureWorks2014Model.BusinessEntity" Width="1.5" PointX="0.75" PointY="4.375" />
+        <AssociationConnector Association="AdventureWorks2014Model.FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" />
+        <AssociationConnector Association="AdventureWorks2014Model.FK_Person_BusinessEntity_BusinessEntityID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

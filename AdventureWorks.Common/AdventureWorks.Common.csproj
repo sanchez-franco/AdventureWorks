@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PersonAddress.cs" />
+    <Compile Include="PersonDetail.cs" />
+    <Compile Include="Result.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

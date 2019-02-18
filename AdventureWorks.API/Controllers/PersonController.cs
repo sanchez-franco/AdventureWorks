@@ -1,9 +1,11 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using AdventureWorks.Business.Person;
+using AdventureWorks.Common;
 
 namespace AdventureWorks.API.Controllers
 {
-    [AuthorizeAttribute]
+    [Authorize]
     [RoutePrefix("person")]
     public class PersonController : ApiController
     {
@@ -12,6 +14,19 @@ namespace AdventureWorks.API.Controllers
         public PersonController(IPersonService personService)
         {
             _personService = personService;
+        }
+
+        [HttpGet]
+        [Route("{personId:int}")]
+        public IHttpActionResult GetPerson(int personId)
+        {
+            var retValue = new Result<PersonDetail>
+            {
+                Data = _personService.GetPerson(personId)
+            };
+            retValue.Status = retValue.Data != null ? HttpStatusCode.OK : HttpStatusCode.NotFound;
+
+            return Ok(retValue);
         }
 
         [HttpGet]

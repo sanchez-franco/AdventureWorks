@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink($"{User.Identity.GetUserName()} Sign out", "LogOut", "Account", routeValues: null, htmlAttributes: new { title = "Sign out" })
+        </li>
+    </ul>
+}

@@ -22,5 +22,6 @@ namespace AdventureWorks.Data
     
         public virtual Address Address { get; set; }
         public virtual AddressType AddressType { get; set; }
+        public virtual BusinessEntity BusinessEntity { get; set; }
     }
 }

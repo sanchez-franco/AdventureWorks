@@ -1,0 +1,86 @@
+﻿@model AdventureWorks.Common.PersonDetail
+@{
+    ViewBag.Title = "View Person";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            @if (Model != null)
+            {
+                <h4>Use data.</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.FirstName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.FirstName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.LastName)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.LastName)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.AddressType)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.AddressType)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.AddressLine1)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.AddressLine1)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.AddressLine2)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.AddressLine2)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.City)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.City)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.State)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.State)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        @Html.LabelFor(m => m.ZipCode)
+                    </div>
+                    <div class="col-sm-4">
+                        @Html.DisplayFor(m => m.ZipCode)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h4>Use data not found!</h4>
+            }
+        </section>
+    </div>
+</div>

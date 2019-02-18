@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AdventureWorks.Business.Authentication;
@@ -44,7 +45,7 @@ namespace AdventureWorks.API.Providers
                 _authenticationService.ValidateUserPassword(context.UserName, context.Password)
             );
 
-            context.Response.Headers.Append("IsValid", (user != null).ToString());
+            context.Response.Headers.Append("HttpStatusCode", (user != null ? HttpStatusCode.OK : HttpStatusCode.Unauthorized).ToString());
 
             if (user == null)
             {
@@ -56,7 +57,8 @@ namespace AdventureWorks.API.Providers
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+            identity.AddClaim(new Claim(ClaimTypes.Hash, user.UserId.ToString()));
 
             var props = CreateProperties(context.UserName);
 

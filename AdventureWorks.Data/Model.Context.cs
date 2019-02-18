@@ -46,5 +46,6 @@ namespace AdventureWorks.Data
         public virtual DbSet<AddressType> AddressTypes { get; set; }
         public virtual DbSet<StateProvince> StateProvinces { get; set; }
         public virtual DbSet<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+        public virtual DbSet<BusinessEntity> BusinessEntities { get; set; }
     }
 }

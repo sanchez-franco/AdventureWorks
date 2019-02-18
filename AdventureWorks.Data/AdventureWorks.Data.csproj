@@ -57,6 +57,9 @@
     <Compile Include="AddressType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="BusinessEntity.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="BusinessEntityAddress.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

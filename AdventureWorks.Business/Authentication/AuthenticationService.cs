@@ -24,6 +24,7 @@ namespace AdventureWorks.Business.Authentication
                 {
                     retValue = new User
                     {
+                        Id = person.BusinessEntityID,
                         FirstName = person.FirstName,
                         LastName = person.LastName,
                         UserId = person.rowguid,

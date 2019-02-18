@@ -28,6 +28,14 @@
           <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="BusinessEntity">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="BusinessEntityAddress">
           <Key>
             <PropertyRef Name="BusinessEntityID" />
@@ -296,6 +304,18 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID">
+          <End Role="BusinessEntity" Type="Self.BusinessEntity" Multiplicity="1" />
+          <End Role="BusinessEntityAddress" Type="Self.BusinessEntityAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessEntity">
+              <PropertyRef Name="BusinessEntityID" />
+            </Principal>
+            <Dependent Role="BusinessEntityAddress">
+              <PropertyRef Name="BusinessEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EmailAddress_Person_BusinessEntityID">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="EmailAddress" Type="Self.EmailAddress" Multiplicity="*" />
@@ -316,6 +336,18 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
               <PropertyRef Name="BusinessEntityID" />
             </Principal>
             <Dependent Role="Password">
+              <PropertyRef Name="BusinessEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_BusinessEntity_BusinessEntityID">
+          <End Role="BusinessEntity" Type="Self.BusinessEntity" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessEntity">
+              <PropertyRef Name="BusinessEntityID" />
+            </Principal>
+            <Dependent Role="Person">
               <PropertyRef Name="BusinessEntityID" />
             </Dependent>
           </ReferentialConstraint>
@@ -479,6 +511,7 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
         <EntityContainer Name="AdventureWorks2014ModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="Person" store:Type="Tables" />
           <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="Person" store:Type="Tables" />
+          <EntitySet Name="BusinessEntity" EntityType="Self.BusinessEntity" Schema="Person" store:Type="Tables" />
           <EntitySet Name="BusinessEntityAddress" EntityType="Self.BusinessEntityAddress" Schema="Person" store:Type="Tables" />
           <EntitySet Name="EmailAddress" EntityType="Self.EmailAddress" Schema="Person" store:Type="Tables" />
           <EntitySet Name="Password" EntityType="Self.Password" Schema="Person" store:Type="Tables" />
@@ -515,6 +548,10 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
             <End Role="AddressType" EntitySet="AddressType" />
             <End Role="BusinessEntityAddress" EntitySet="BusinessEntityAddress" />
           </AssociationSet>
+          <AssociationSet Name="FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" Association="Self.FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID">
+            <End Role="BusinessEntity" EntitySet="BusinessEntity" />
+            <End Role="BusinessEntityAddress" EntitySet="BusinessEntityAddress" />
+          </AssociationSet>
           <AssociationSet Name="FK_EmailAddress_Person_BusinessEntityID" Association="Self.FK_EmailAddress_Person_BusinessEntityID">
             <End Role="Person" EntitySet="Person" />
             <End Role="EmailAddress" EntitySet="EmailAddress" />
@@ -522,6 +559,10 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
           <AssociationSet Name="FK_Password_Person_BusinessEntityID" Association="Self.FK_Password_Person_BusinessEntityID">
             <End Role="Person" EntitySet="Person" />
             <End Role="Password" EntitySet="Password" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_BusinessEntity_BusinessEntityID" Association="Self.FK_Person_BusinessEntity_BusinessEntityID">
+            <End Role="BusinessEntity" EntitySet="BusinessEntity" />
+            <End Role="Person" EntitySet="Person" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductModel_ProductModelID" Association="Self.FK_Product_ProductModel_ProductModelID">
             <End Role="ProductModel" EntitySet="ProductModel" />
@@ -610,6 +651,7 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Password" Relationship="Self.FK_Password_Person_BusinessEntityID" FromRole="Person" ToRole="Password" />
           <NavigationProperty Name="EmailAddresses" Relationship="AdventureWorks2014Model.FK_EmailAddress_Person_BusinessEntityID" FromRole="Person" ToRole="EmailAddress" />
+          <NavigationProperty Name="BusinessEntity" Relationship="AdventureWorks2014Model.FK_Person_BusinessEntity_BusinessEntityID" FromRole="Person" ToRole="BusinessEntity" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1064,6 +1106,15 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
             <End Role="AddressType" EntitySet="AddressTypes" />
             <End Role="BusinessEntityAddress" EntitySet="BusinessEntityAddresses" />
           </AssociationSet>
+          <EntitySet Name="BusinessEntities" EntityType="AdventureWorks2014Model.BusinessEntity" />
+          <AssociationSet Name="FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" Association="AdventureWorks2014Model.FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID">
+            <End Role="BusinessEntity" EntitySet="BusinessEntities" />
+            <End Role="BusinessEntityAddress" EntitySet="BusinessEntityAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_BusinessEntity_BusinessEntityID" Association="AdventureWorks2014Model.FK_Person_BusinessEntity_BusinessEntityID">
+            <End Role="BusinessEntity" EntitySet="BusinessEntities" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EmailAddress">
           <Key>
@@ -1154,6 +1205,7 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Address" Relationship="AdventureWorks2014Model.FK_BusinessEntityAddress_Address_AddressID" FromRole="BusinessEntityAddress" ToRole="Address" />
           <NavigationProperty Name="AddressType" Relationship="AdventureWorks2014Model.FK_BusinessEntityAddress_AddressType_AddressTypeID" FromRole="BusinessEntityAddress" ToRole="AddressType" />
+          <NavigationProperty Name="BusinessEntity" Relationship="AdventureWorks2014Model.FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" FromRole="BusinessEntityAddress" ToRole="BusinessEntity" />
         </EntityType>
         <Association Name="FK_BusinessEntityAddress_Address_AddressID">
           <End Type="AdventureWorks2014Model.Address" Role="Address" Multiplicity="1" />
@@ -1176,6 +1228,40 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
             </Principal>
             <Dependent Role="BusinessEntityAddress">
               <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BusinessEntity">
+          <Key>
+            <PropertyRef Name="BusinessEntityID" />
+          </Key>
+          <Property Name="BusinessEntityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BusinessEntityAddresses" Relationship="AdventureWorks2014Model.FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID" FromRole="BusinessEntity" ToRole="BusinessEntityAddress" />
+          <NavigationProperty Name="Person" Relationship="AdventureWorks2014Model.FK_Person_BusinessEntity_BusinessEntityID" FromRole="BusinessEntity" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID">
+          <End Type="AdventureWorks2014Model.BusinessEntity" Role="BusinessEntity" Multiplicity="1" />
+          <End Type="AdventureWorks2014Model.BusinessEntityAddress" Role="BusinessEntityAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessEntity">
+              <PropertyRef Name="BusinessEntityID" />
+            </Principal>
+            <Dependent Role="BusinessEntityAddress">
+              <PropertyRef Name="BusinessEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_BusinessEntity_BusinessEntityID">
+          <End Type="AdventureWorks2014Model.BusinessEntity" Role="BusinessEntity" Multiplicity="1" />
+          <End Type="AdventureWorks2014Model.Person" Role="Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessEntity">
+              <PropertyRef Name="BusinessEntityID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="BusinessEntityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1444,6 +1530,15 @@ warning 6031: The column 'DocumentNode' on the table/view 'AdventureWorks2014.Pr
                 <ScalarProperty Name="rowguid" ColumnName="rowguid" />
                 <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
                 <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessEntities">
+            <EntityTypeMapping TypeName="AdventureWorks2014Model.BusinessEntity">
+              <MappingFragment StoreEntitySet="BusinessEntity">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
                 <ScalarProperty Name="BusinessEntityID" ColumnName="BusinessEntityID" />
               </MappingFragment>
             </EntityTypeMapping>
