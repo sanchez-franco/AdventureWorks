@@ -37,7 +37,7 @@ Sample implementation of [Repository Pattern] defined by Mosh Hamedani
 
 ### [Factory Method]
 
-- Using the creational pattern [Factory Method] to promote loosely coupling.
+- Using the creational pattern [Factory Method] to promote loose coupling.
 - Promotes testability.
 
 ![Factory Method](/Images/FactoryMethod.PNG)
@@ -46,7 +46,7 @@ Sample implementation of [Repository Pattern] defined by Mosh Hamedani
 
 - By definition, Dependency Injection (DI) is an object-oriented programming design pattern that allows us to develop loosely coupled code.
 - This is accomplished by the Inversion of Control principle (IoC), the flow depends on the defined abstractions to be implemented that is built up during program execution.
-- We use the out of the box containers in your Web API project to configure this as follow.
+- We use out of the box containers in our Web API project to configure this as follows.
 
 ![DI](/Images/DI.PNG)
 
@@ -54,7 +54,7 @@ Sample implementation of [Repository Pattern] defined by Mosh Hamedani
 
 Screenshots to call our Web API using [Postman]
 
-- Use out of the box configuration in our Web API project and using the integration to our DB to authenticate the user.
+- Use out of the box configuration in our Web API project and use the integration to our DB to authenticate the user.
 
 ![Bearer Token](/Images/OAuth.PNG)
 
@@ -68,10 +68,10 @@ Screenshots to call our Web API using [Postman]
 
 ### Unit Testing
 
-- I've created a small Unit Test project to check if our validation process on the Authentication Service.
-- There a bunch of frameworks to do this, currently I use [Moq] to be able to Mock our abstractions
-- Another good tool for Unit Testing that I like to use (not currently in this project) is [AutoFixture], since it helps you to save a lot of time by autogenerating entities based on parameters.
-- All of this can accomplish since we use abstractions in our N-Tier Application, which made our code not tightly coupled.
+- I've created a small Unit Test project to check our validation process on the Authentication Service.
+- There are a bunch of frameworks to do this, currently I use [Moq] to be able to Mock our abstractions
+- Another good tool for Unit Testing that I like to use (not currently in this project) is [AutoFixture], since it helps you save a lot of time by autogenerating entities based on parameters.
+- All of this can be accomplished since we used abstractions in our N-Tier Application, which made our code not tightly coupled.
 
 ![Unit Testing](/Images/UnitTesting.PNG)
 
