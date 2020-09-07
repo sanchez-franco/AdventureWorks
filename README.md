@@ -83,6 +83,6 @@ Screenshots to call our Web API using [Postman]
 [AutoFixture]: https://github.com/AutoFixture/AutoFixture
 [Postman]: https://learning.getpostman.com/docs/postman/sending_api_requests/authorization/
 [Repository Pattern]: https://programmingwithmosh.com/
-[AdventureWorks DB]: https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks
+[AdventureWorks DB 2014]: https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks
 [Factory Method]: https://www.dofactory.com/net/factory-method-design-pattern
 [N + 1 Problem]: http://blogs.microsoft.co.il/gilf/2010/08/18/select-n1-problem-how-to-decrease-your-orm-performance/
