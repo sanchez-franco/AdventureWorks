@@ -21,7 +21,7 @@ Sample implementation of [Repository Pattern] defined by Mosh Hamedani
 - Minimizing duplicate query logic by the basic encapsulation principle.
 - Promotes testability.
 
-[Meh](https://github.com/sanchez-franco/AdventureWorks/blob/c2853d4ef3a9b1e77d951fc4077a9049be0ea868/AdventureWorks.Data.Repository/Repository.cs#L9)
+[Repository Class](https://github.com/sanchez-franco/AdventureWorks/blob/c2853d4ef3a9b1e77d951fc4077a9049be0ea868/AdventureWorks.Data.Repository/Repository.cs#L9)
 
 ![Repository Pattern](/Images/RepositoryPattern.PNG)
 
